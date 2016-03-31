@@ -1,0 +1,244 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
+.horizontal-align {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+body {
+    background: #d3d9f6;
+    background-repeat: repeat;
+}
+
+h1 {
+    color: #00001e;
+    font-size: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    letter-spacing: 20px;
+    text-shadow: 3px 3px 4px #777;
+    margin-top: 50px;
+}
+
+#game-board {
+    width: 350px;
+    height: 350px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+}
+
+#game-board > button {
+    background-color: #34210C;
+    border: #FFF solid 5px;
+    border-radius: 20%;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
+    width: 110px;
+    height: 110px;
+    float: left;
+  
+    /* gaps between buttons */  
+    margin: 0 10px 10px 0;
+    font-family: 'Indie Flower', cursive;
+    font-size: 80px;
+    text-shadow: 5px 5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: 700;
+  
+    /* aligns symbols vertically in the buttons */
+    line-height: 55px;
+    vertical-align: middle;
+}
+
+/* fits three buttons in one row */
+.last-column {
+    margin-right: 0 !important;
+}
+
+/* removes push effect on button */
+#game-board > button:focus {
+    padding: 0;
+    outline: none;
+}
+
+.x-style {
+    color: #2fff2f;
+}
+
+.o-style {
+    color: #ffff19;
+}
+
+/* jquery ui */
+/* no close in titlebar */
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.symbol-selected {
+    background: #cbcdd8 !important;
+}
+
+.ui-dialog {
+    font-family: 'Roboto Condensed', Helvetica, sans-serif;
+    background: #8496e8;
+    box-shadow: 7.5px 7.5px 10px 0 rgba(0, 0, 0, 0.75);
+    border: none;
+}
+
+.ui-dialog-titlebar {
+    background: #a5682a;
+    background: linear-gradient(to right, #311F0C, #a5682a);
+    border-radius: 0;
+    margin: 12.5px 10px 0;
+    height: 27.5px;
+    border: #FFF double 5px;
+}
+
+.ui-dialog-title {
+
+    /* vertical alignment */  
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFF;
+    font-size: 26px;
+}
+
+.ui-dialog-buttonpane {
+    background: #8496e8;
+    border: none;
+    margin-top: -10px !important;
+}
+
+.jq-xo-btn {
+    border-radius: 40%;
+    border: none !important;
+    height: 90px;
+    width: 120px;
+    background: #424b74 !important;
+}
+
+.jq-xo-btn:hover {
+    background: #cbcdd8 !important;
+    outline: none;
+}
+
+.jq-xo-btn:focus {
+    outline: none;
+}
+
+.jq-xo-btn:nth-child(1) {
+    margin-right: 35px !important;
+}
+
+.jq-xo-btn:nth-child(2) {
+    margin-right: -5px !important;
+}
+
+.jq-xo-btn:nth-child(1) .ui-button-text {
+    color: #2fff2f;
+}
+
+.jq-xo-btn:nth-child(2) .ui-button-text {
+    color: #ffff19;
+}
+
+.ui-button-text {
+    font-size: 80px;
+  
+    /* centers symbols inside buttons */    
+    padding: 0 !important;
+    font-family: 'Indie Flower', cursive, Helvetica;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* level select screen styling */
+.jq-level-btn:focus,
+.jq-reset-btn:focus {
+    outline: none;
+}
+
+.ui-dialog.levelDialog .jq-level-btn .ui-button-text,
+.ui-dialog.gameOverDialog .jq-reset-btn .ui-button-text {
+    font-size: 27.5px;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', Helvetica, sans-serif;
+    text-shadow: none;
+    color: #FFF;
+}
+
+.ui-dialog.levelDialog .jq-level-btn,
+.ui-dialog.gameOverDialog .jq-reset-btn {
+    background: #424b74 !important;
+    border: #000 dotted 2px;
+    border-radius: 0;
+    height: 35px;
+    width: 80px;
+    margin-top: -110px;
+}
+
+.ui-dialog.gameOverDialog .jq-reset-btn {
+    margin-right: 27.5px;
+    margin-top: -120px;
+}
+
+.ui-dialog.levelDialog .ui-dialog-content {
+    height: 60px !important;
+}
+
+.ui-dialog.levelDialog .jq-level-btn {
+    margin-top: -52.5px;
+}
+
+.ui-dialog.levelDialog .jq-level-btn:nth-child(1) {
+    margin-right: 25px;
+}
+
+.ui-dialog.levelDialog .jq-level-btn:nth-child(2) {
+    margin-right: 40px;
+}
+
+.ui-dialog.gameOverDialog #game-img {
+    height: 121px;
+    width: 121px;
+    border: #000 solid .5px;
+    margin-top: 8.875px;
+    box-sizing: border-box;
+}
+
+.ui-dialog.gameOverDialog .ui-dialog-content {
+    overflow: hidden !important;
+}
+
+.ui-dialog.gameOverDialog .jq-reset-btn {
+    height: 27.5px;
+    width: 72.5px;
+}
+
+.ui-dialog.gameOverDialog .jq-reset-btn .ui-button-text {
+    font-size: 22.5px;
+}
+
+.field-taken {
+    background-color: #140d04 !important;
+}
+
+.field-lights {
+    background-color: #7f460d !important;
+}
+
+.pointercursor {
+    cursor: pointer;
+}
