@@ -80,10 +80,8 @@ $("#levelDialog").dialog({
         gameMemory.easyMode = false;
         initializeGame();
         $(this).dialog("close");
-
       }
     }
-
   ]
 });
 
@@ -136,33 +134,26 @@ $(window).resize(function() {
     at: "center",
     of: window
   });
-
 });
 
 /* sounds */
 
 function playClickSound() {
-
   var sound = new Howl({
 	  urls: ['assets/sounds/click.mp3']
   }).play();
- 
 };
 
 function playFailSound() {
-
   var sound = new Howl({
   	urls: ['assets/sounds/fail.mp3']
   }).play();
-
 };
 
 function playWinSound() {
-
   var sound = new Howl({
   	urls: ['assets/sounds/win.mp3']
   }).play();
-
 };
 
 function playGameOverSound(msg) {
@@ -218,7 +209,6 @@ function changeBackground() {
     case "rgb(255, 253, 208)":
       $("body").css("background-color", "rgb(211, 217, 246)");
       break;
-
   }
 }
 
@@ -245,7 +235,6 @@ function resetMemory() {
   $("#game-img").attr("src", "");
   $("#game-board > button").removeClass("field-taken");
   initializeGame();
-
 };
 
 function setPlayerChar(c) {
@@ -255,12 +244,10 @@ function setPlayerChar(c) {
 /* logic for initializing the game */
 
 function initializeGame() {
-
   if (gameMemory.playerChar == 'X') {
     gameMemory.compChar = 'O';
     gameMemory.playerTurn = true;
   } else {
-
     gameMemory.compChar = 'X';
     generateCompMove();
   }
@@ -273,9 +260,7 @@ function getRandomInteger(min, max) {
 };
 
 function triggerClick(n) {
-
   setSymbol($("button[gamepos='" + n + "']"), "computer");
-
 };
 
 /* checks for empty state on a given position of a button */
@@ -290,9 +275,7 @@ function startFromCenter() {
 
 /* starts in a random corner */
 function startFromCorner() {
-
   var pos = -1;
-
   while (pos < 0 || pos === 2 || (4 <= pos && pos <= 6) || pos === 8) {
     pos = getRandomInteger(1, 9);
   }
@@ -301,7 +284,6 @@ function startFromCorner() {
 
 function continueInRandomCorner() {
   var pos = -1;
-
   while (pos < 0 || pos === 2 || (4 <= pos && pos <= 6) || pos === 8 || !isEmptyField(pos)) {
     pos = getRandomInteger(1, 9);
   }
@@ -310,7 +292,6 @@ function continueInRandomCorner() {
 
 function continueOnSide() {
   var pos = -1;
-
   while (pos < 0 || pos === 3 || pos === 5 || pos === 7 || !isEmptyField(pos) || !hasSideEmptyNeighbours(pos)) {
     pos = getRandomInteger(2, 8);
   }
@@ -318,19 +299,15 @@ function continueOnSide() {
 };
 
 function continueOnSideWithEmptyAndCompNeighbours() {
-
   var pos = -1;
-
   while (pos < 0 || pos === 3 || pos === 5 || pos === 7 || !isEmptyField(pos) || !hasSideWithEmptyAndCompNeighbours(pos)) {
     pos = getRandomInteger(2, 8);
   }
   triggerClick(pos);
-
 };
 
 function continueOnRandomSideField() {
   var pos = -1;
-
   while (pos < 0 || pos === 3 || pos === 5 || pos === 7 || !isEmptyField(pos)) {
     pos = getRandomInteger(2, 8);
   }
@@ -338,7 +315,6 @@ function continueOnRandomSideField() {
 };
 
 function emptySideFieldsExists() {
-
   if (isEmptyField(2)) {
     return true;
   }
@@ -352,29 +328,23 @@ function emptySideFieldsExists() {
     return true;
   }
   return false;
-
 };
 
 function emptyFieldExists() {
-
   for (var i in gameMemory.board) {
     if (gameMemory.board[i] === -1) {
       return true;
     }
   }
   return false;
-
 };
 
 function continueOnRandomEmptyField() {
-
   var pos = -1;
-
   while (pos < 0 || !isEmptyField(pos)) {
     pos = getRandomInteger(1, 9);
   }
   triggerClick(pos);
-
 };
 
 function hasSideWithEmptyAndCompNeighbours(pos) {
@@ -398,14 +368,11 @@ function hasSideWithEmptyAndCompNeighbours(pos) {
       if ((b[6] === -1) && (b[8] === s) || (b[6] === s) && (b[8] === -1)) {
         return true;
       }
-
   }
-
   return false;
 };
 
 function hasSideEmptyNeighbours(pos) {
-
   var b = gameMemory.board;
 
   switch (pos) {
@@ -425,14 +392,11 @@ function hasSideEmptyNeighbours(pos) {
       if ((b[6] === -1) && (b[8] === -1)) {
         return true;
       }
-
   }
-
   return false;
 };
 
 function sideWithEmptyAndCompNeighboursExists() {
-
   var s = gameMemory.compChar;
   var b = gameMemory.board;
 
@@ -461,8 +425,8 @@ function sideWithEmptyAndCompNeighboursExists() {
 
 /* returns true if a side field exists with two empty neighbours */
 function sideWithEmptyNeighboursExists() {
-
   var b = gameMemory.board;
+	
   if ((b[0] === -1) && (b[2] === -1)) {
     if (isEmptyField(2)) {
       return true;
@@ -530,15 +494,12 @@ function getCornerPosInBetweenHumanSymbols() {
 };
 
 function continueInCornerBetweenXSymbols() {
-
   var pos = getCornerPosInBetweenHumanSymbols();
-
   if (pos) {
     triggerClick(pos);
     return true;
   }
   return false;
-
 };
 
 function blockHuman() {
@@ -563,11 +524,9 @@ function posOfEmptyFieldInLine(player) {
   }
 
   var b = gameMemory.board;
-
   var pos = -1;
 
   for (var i = 0; i <= 6; i += 3) {
-
     if (b[0 + i] === p && b[1 + i] === p) {
       if (isEmptyField(3 + i)) {
         pos = 3 + i;
@@ -584,7 +543,6 @@ function posOfEmptyFieldInLine(player) {
   }
 
   for (var i = 0; i <= 2; i++) {
-
     if (b[0 + i] === p && b[3 + i] === p) {
       if (isEmptyField(7 + i)) {
         pos = 7 + i;
@@ -621,11 +579,9 @@ function posOfEmptyFieldInLine(player) {
     return true;
   }
   return false;
-
 };
 
 function cornerWithFreeNeighboursExists() {
-
   if (isEmptyField(1) && isEmptyField(2) && isEmptyField(4) && isEmptyField(5)) {
     return true;
   }
@@ -638,13 +594,10 @@ function cornerWithFreeNeighboursExists() {
   if (isEmptyField(4) && isEmptyField(5) && isEmptyField(8) && isEmptyField(9)) {
     return true;
   }
-
   return false;
-
 };
 
 function hasCornerFreeNeighbours(pos) {
-
   switch (pos) {
     case 1:
       if (isEmptyField(2) && isEmptyField(4) && isEmptyField(5)) {
@@ -668,18 +621,14 @@ function hasCornerFreeNeighbours(pos) {
       break;
   }
   return false;
-
 };
 
 function continueInCornerWithFreeNeighbours() {
-
   var pos = -1;
-
   while (pos < 0 || pos === 2 || (4 <= pos && pos <= 6) || pos === 8 || !isEmptyField(pos) || !hasCornerFreeNeighbours(pos)) {
     pos = getRandomInteger(1, 9);
   }
   triggerClick(pos);
-
 };
 
 function generateCompMove() {
@@ -693,11 +642,9 @@ function generateCompMove() {
     } else {
       // hard mode
       if (gameMemory.compMove === 0) {
-        // generate first computer move
-
+	// generate first computer move
         if (gameMemory.playerChar === 'X') {
           // human starts, we need to counterattack
-
           // counterattack depends on the position the human player choose
           if (humanStartedFromSide()) {
             startFromCenter();
@@ -706,10 +653,8 @@ function generateCompMove() {
           } else if (humanStartedFromCorner()) {
             startFromCenter();
           }
-
         } else {
           // computer starts, put first symbol on the board
-
           // with 80% start from the corner, with 20% start from the center
           if (getRandomInteger(1, 5) === 5) {
             startFromCenter();
@@ -717,7 +662,6 @@ function generateCompMove() {
             startFromCorner();
           }
         }
-
       } else if (gameMemory.compMove >= 1) {
         // block almost completed lines from the opponent
         if (!completeCompLine()) {
@@ -728,46 +672,37 @@ function generateCompMove() {
               } else {
                 // if no side field with two empty neigbours exists,
                 // choose a side field with one empty and one computer field as neighbours
-
                 if (sideWithEmptyAndCompNeighboursExists()) {
                   continueOnSideWithEmptyAndCompNeighbours();
                 } else {
                   // choose a random side field
                   if (emptySideFieldsExists()) {
-
                     continueOnRandomSideField();
                   } else {
                     // pick a random empty field
                     if (emptyFieldExists) {
                       continueOnRandomEmptyField();
                     }
-
                   }
-
                 }
               }
             } else {
               // place the next symbol in the corner between the two human symbols 
               if (!continueInCornerBetweenXSymbols()) {
-
                 // pick another field so there will be an empty space between two computer symbols
                 if (cornerWithFreeNeighboursExists()) {
                   continueInCornerWithFreeNeighbours();
                 } else {
-
                   // choose a random free corner 
                   continueInRandomCorner();
                 }
               }
             }
           }
-
         }
-
       }
     }
   }
-
   /* check whether game is over */
   checkGameOver();
 };
@@ -805,28 +740,22 @@ function setSymbol(clickedButton, player) {
 
     $(clickedButton).addClass("field-lights");
     window.setTimeout(function() {
-
       $(clickedButton).removeClass("field-lights");
       $(clickedButton).addClass("field-taken");
-
     }, 500);
 
     if (player == "computer") {
-
       /* change turns */
       gameMemory.playerTurn = true;
       gameMemory.compMove++;
-
     }
     if (player == "human") {
       playClickSound();
     }
-
   }
 };
 
 $("#game-board > button").click(function() {
-
   if (gameMemory.playerTurn && isEmptyField($(this).attr("gamepos")) && !gameMemory.gameOver) {
     gameMemory.playerTurn = false;
     // removes cursor pointer while computers turn
@@ -837,22 +766,16 @@ $("#game-board > button").click(function() {
     /* generate answer */
     /* delays the computer reaction to make it more natural*/
     window.setTimeout(function() {
-
       generateCompMove();
     }, 1000);
-
   }
-
 });
 
 /* logic for ending the current game */
-
 function checkGameOver() {
-
   checkWin("human");
   checkWin("computer");
   checkDraw();
-
 };
 
 function checkWin(player) {
@@ -860,6 +783,7 @@ function checkWin(player) {
     var b = gameMemory.board;
     var s;
     var msg;
+    
     switch (player) {
       case "human":
         s = gameMemory.playerChar;
@@ -895,7 +819,6 @@ function checkWin(player) {
 
     // check for complete diagonal lines
     for (var i = 0; i <= 2; i += 2) {
-
       if ((b[0 + i] === b[4]) && (b[4] === b[8 - i]) && (b[8 - i] === s)) {
         check = true;
         completeline.push(0 + i);
@@ -903,24 +826,22 @@ function checkWin(player) {
         completeline.push(8 - i);
       }
     }
-
   }
 
   if (check === true) {
     endGame();
     playGameOverSound(msg);
+    
     for (var i of completeline) {
       var gamepos = i + 1;
       /* blinks the complete line and shows a dialog to the user */
       showGameOverInfo(gamepos, 3, 500, msg);
     }
   }
-
 };
 
 /* checks whether there is no winner */
 function checkDraw() {
-
   if (!gameMemory.gameOver) {
     /* no empty field left on the board */
     if (gameMemory.board.indexOf(-1) === -1) {
@@ -943,9 +864,7 @@ function showGameOverInfo(field, n, timeout, msg) {
   var lightdur = 400;
 
   window.setTimeout(function() {
-
     $("button[gamepos='" + field + "']").removeClass("field-taken").addClass("field-lights");
-
     window.setTimeout(function() {
       $("button[gamepos='" + field + "']").addClass("field-taken").removeClass("field-lights");
       // light another time
@@ -954,15 +873,12 @@ function showGameOverInfo(field, n, timeout, msg) {
       } else {
         showGameOverDialog(msg);
       }
-
       // how long should the field light
     }, lightdur);
   }, timeout);
-
 };
 
 function showGameOverDialog(msg) {
-
   var delay = 300;
   var imgpath = "";
 
